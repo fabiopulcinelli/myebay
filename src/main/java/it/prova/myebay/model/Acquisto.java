@@ -36,12 +36,17 @@ public class Acquisto {
 	public Acquisto() {
 	}
 	
-	public Acquisto(Long id, String descrizione, Date data, int prezzo) {
+	public Acquisto(Long id) {
+		this.id = id;
+	}
+	
+	public Acquisto(Long id, String descrizione, Date data, int prezzo, Utente utenteAcquirente) {
 		super();
 		this.id = id;
 		this.descrizione = descrizione;
 		this.data = data;
 		this.prezzo = prezzo;
+		this.utenteAcquirente = utenteAcquirente;
 	}
 	
 	public Acquisto(String descrizione, Date data, int prezzo) {
