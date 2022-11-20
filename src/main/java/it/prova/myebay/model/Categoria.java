@@ -30,6 +30,11 @@ public class Categoria {
 	
 	public Categoria() {
 	}
+	
+	public Categoria(Long id) {
+		super();
+		this.id = id;
+	}
 
 	public Categoria(Long id, String descrizione, String codice, Set<Annuncio> annunci) {
 		super();

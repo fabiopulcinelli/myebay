@@ -28,7 +28,7 @@ public class Annuncio {
 	private String testoAnnuncio;
 	
 	@Column(name = "prezzo")
-	private int prezzo;
+	private Integer prezzo;
 	
 	@Column(name = "data")
 	private Date data;
@@ -51,7 +51,7 @@ public class Annuncio {
 		this.id = id;
 	}
 
-	public Annuncio(Long id, String testoAnnuncio, int prezzo, Date data, boolean aperto, Set<Categoria> categorie, Utente utenteInserimento) {
+	public Annuncio(Long id, String testoAnnuncio, Integer prezzo, Date data, boolean aperto, Set<Categoria> categorie, Utente utenteInserimento) {
 		super();
 		this.id = id;
 		this.testoAnnuncio = testoAnnuncio;
@@ -62,7 +62,7 @@ public class Annuncio {
 		this.categorie = categorie;
 	}
 	
-	public Annuncio(String testoAnnuncio, int prezzo, Date data, boolean aperto, Set<Categoria> categorie, Utente utenteInserimento) {
+	public Annuncio(String testoAnnuncio, Integer prezzo, Date data, boolean aperto, Set<Categoria> categorie, Utente utenteInserimento) {
 		super();
 		this.testoAnnuncio = testoAnnuncio;
 		this.prezzo = prezzo;
@@ -88,11 +88,11 @@ public class Annuncio {
 		this.testoAnnuncio = testoAnnuncio;
 	}
 
-	public int getPrezzo() {
+	public Integer getPrezzo() {
 		return prezzo;
 	}
 
-	public void setPrezzo(int prezzo) {
+	public void setPrezzo(Integer prezzo) {
 		this.prezzo = prezzo;
 	}
 

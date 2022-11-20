@@ -11,6 +11,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
 
@@ -23,7 +25,8 @@ public class AnnuncioDTO {
 	
 	@NotNull(message = "{annuncio.prezzo.notnull}")
 	@Min(1)
-	private int prezzo;
+	@NumberFormat
+	private Integer prezzo;
 	
 	@NotNull(message = "{annuncio.data.notnull}")
 	private Date data;
@@ -42,7 +45,7 @@ public class AnnuncioDTO {
 		this.id = id;
 	}
 
-	public AnnuncioDTO(Long id, String testoAnnuncio, int prezzo, Date data, boolean aperto,
+	public AnnuncioDTO(Long id, String testoAnnuncio, Integer prezzo, Date data, boolean aperto,
 			Set<Categoria> categorie) {
 		super();
 		this.id = id;
@@ -53,7 +56,7 @@ public class AnnuncioDTO {
 		this.categorie = categorie;
 	}
 	
-	public AnnuncioDTO(String testoAnnuncio, int prezzo, Date data, boolean aperto) {
+	public AnnuncioDTO(String testoAnnuncio, Integer prezzo, Date data, boolean aperto) {
 		super();
 		this.testoAnnuncio = testoAnnuncio;
 		this.prezzo = prezzo;
@@ -77,11 +80,11 @@ public class AnnuncioDTO {
 		this.testoAnnuncio = testoAnnuncio;
 	}
 
-	public int getPrezzo() {
+	public Integer getPrezzo() {
 		return prezzo;
 	}
 
-	public void setPrezzo(int prezzo) {
+	public void setPrezzo(Integer prezzo) {
 		this.prezzo = prezzo;
 	}
 

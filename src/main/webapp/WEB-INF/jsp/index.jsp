@@ -1,3 +1,5 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -52,11 +54,74 @@
 				      <div class="container-fluid py-5">
 				        <h1 class="display-5 fw-bold">MyEbay</h1>
 				        <p class="col-md-8 fs-4">Il tuo sito di annunci e acquisti. </p>
-				        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/regista/search">Vai a Ricerca</a>
 				      </div>
 			    </div>
 			    
 			  </div>
+			  
+			  	  <div class="container">
+	
+			<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
+			  ${errorMessage}
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			
+			<div class='card'>
+			    <div class='card-header'>
+			        <h5>Ricerca elementi</h5> 
+			    </div>
+			    <div class='card-body'>
+	
+						<form method="post" action="${pageContext.request.contextPath}/risultati" class="row g-3">
+						
+							<div class="col-md-6">
+								<label for="testoAnnuncio" class="form-label">Testo annuncio</label>
+								<input type="text" name="testoAnnuncio" id="testoAnnuncio" class="form-control" placeholder="Inserire il testo" >
+							</div>
+							
+							<div class="col-md-6">
+								<label for="prezzo" class="form-label">Prezzo a partire da</label>
+								<input type="number" min="0" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo">
+							</div>
+							
+							<%--  checkbox Categorie 	--%>
+								<div class="col-md-6 form-check" id="categorieDivId">
+									<p>Categorie:</p>
+									
+									<%--  TODO 	--%>
+									<form:checkboxes itemValue="id" itemLabel="codice"  element="div class='form-check'" items="${categorie_totali_attr}" path="categorieIds" />
+									
+									
+								</div>
+								<script>
+									$(document).ready(function(){
+										
+										$("#categorieDivId :input").each(function () {
+											$(this).addClass('form-check-input'); 
+										});
+										$("#categorieDivId label").each(function () {
+											$(this).addClass('form-check-label'); 
+										});
+										
+									});
+								</script>
+								<%-- fine checkbox ruoli 	--%>
+							
+							<div class="col-12">	
+								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
+								<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
+							</div>
+	
+							
+						</form>
+			    
+				<!-- end card-body -->			   
+			    </div>
+			</div>	
+	
+		</div>
 			  
 			</main>
 			

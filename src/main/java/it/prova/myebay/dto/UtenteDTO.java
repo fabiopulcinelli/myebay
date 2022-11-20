@@ -22,25 +22,25 @@ public class UtenteDTO {
 
 	private Long id;
 
-	@NotBlank(message = "{username.notblank}", groups = { ValidationWithPassword.class, ValidationNoPassword.class })
+	@NotBlank(message = "{utente.username.notblank}", groups = { ValidationWithPassword.class, ValidationNoPassword.class })
 	@Size(min = 3, max = 15, message = "Il valore inserito '${validatedValue}' deve essere lungo tra {min} e {max} caratteri")
 	private String username;
 
-	@NotBlank(message = "{password.notblank}", groups = ValidationWithPassword.class)
+	@NotBlank(message = "{utente.password.notblank}", groups = ValidationWithPassword.class)
 	@Size(min = 8, max = 15, message = "Il valore inserito deve essere lungo tra {min} e {max} caratteri")
 	private String password;
 
 	private String confermaPassword;
 
-	@NotBlank(message = "{nome.notblank}", groups = { ValidationWithPassword.class, ValidationNoPassword.class })
+	@NotBlank(message = "{utente.nome.notblank}", groups = { ValidationWithPassword.class, ValidationNoPassword.class })
 	private String nome;
 
-	@NotBlank(message = "{cognome.notblank}", groups = { ValidationWithPassword.class, ValidationNoPassword.class })
+	@NotBlank(message = "{utente.cognome.notblank}", groups = { ValidationWithPassword.class, ValidationNoPassword.class })
 	private String cognome;
 
 	private Date dateCreated;
 	
-	@NotNull(message = "{creditoResiduo.notnull}")
+	@NotNull(message = "{utente.creditoResiduo.notnull}")
 	@Min(1)
 	private int creditoResiduo;
 
