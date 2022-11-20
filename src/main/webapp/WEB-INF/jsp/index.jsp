@@ -60,13 +60,6 @@
 			  </div>
 			  
 			  	  <div class="container">
-	
-			<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
-			  ${errorMessage}
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			    <span aria-hidden="true">&times;</span>
-			  </button>
-			</div>
 			
 			<div class='card'>
 			    <div class='card-header'>
@@ -91,8 +84,9 @@
 									<p>Categorie:</p>
 									
 									<%--  TODO 	--%>
-									<form:checkboxes itemValue="id" itemLabel="codice"  element="div class='form-check'" items="${categorie_totali_attr}" path="categorieIds" />
-									
+									<%--
+									<form:checkboxes itemValue="id" itemLabel="codice"  element="div class='form-check'" items="${categorie_totali_attr}" path="categorie" />
+									--%>
 									
 								</div>
 								<script>

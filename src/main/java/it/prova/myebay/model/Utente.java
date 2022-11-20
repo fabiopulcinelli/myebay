@@ -55,6 +55,11 @@ public class Utente {
 
 	public Utente() {
 	}
+	
+	public Utente(Long id) {
+		super();
+		this.id = id;
+	}
 
 	public Utente(String username, String password) {
 		super();

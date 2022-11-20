@@ -51,7 +51,7 @@
 										<td>${annuncioItem.data }</td>
 										<td></td>
 										<td>
-											<a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/annuncio/show/${annuncioItem.id }">Visualizza</a>
+											<a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/show/${annuncioItem.id }">Dettaglio</a>
 											
 										</td>
 									</tr>

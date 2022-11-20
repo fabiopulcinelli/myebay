@@ -51,15 +51,13 @@ public class Annuncio {
 		this.id = id;
 	}
 
-	public Annuncio(Long id, String testoAnnuncio, Integer prezzo, Date data, boolean aperto, Set<Categoria> categorie, Utente utenteInserimento) {
+	public Annuncio(Long id, String testoAnnuncio, Integer prezzo, Date data, boolean aperto) {
 		super();
 		this.id = id;
 		this.testoAnnuncio = testoAnnuncio;
 		this.prezzo = prezzo;
 		this.data = data;
 		this.aperto = aperto;
-		this.utenteInserimento = utenteInserimento;
-		this.categorie = categorie;
 	}
 	
 	public Annuncio(String testoAnnuncio, Integer prezzo, Date data, boolean aperto, Set<Categoria> categorie, Utente utenteInserimento) {
