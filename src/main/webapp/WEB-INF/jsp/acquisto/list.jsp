@@ -34,7 +34,7 @@
 		  
 		  		<div class='card'>
 				    <div class='card-header'>
-				        <h5>Lista dei risultati</h5> 
+				        <h5>I miei acquisti</h5> 
 				    </div>
 				    <div class='card-body'>
 				    
@@ -53,7 +53,7 @@
 											<td>${acquistoItem.descrizione }</td>
 											<td>${acquistoItem.prezzo }</td>
 											<td>
-												<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/acquisto/show/${filmItem.id }">Visualizza</a>
+												<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/acquisto/show/${acquistoItem.id }">Visualizza</a>
 											</td>
 										</tr>
 									</c:forEach>
