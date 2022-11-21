@@ -1,5 +1,7 @@
 package it.prova.myebay.web.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +22,14 @@ import it.prova.myebay.dto.AnnuncioDTO;
 import it.prova.myebay.dto.CategoriaDTO;
 import it.prova.myebay.dto.RuoloDTO;
 import it.prova.myebay.dto.UtenteDTO;
+import it.prova.myebay.model.Acquisto;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.CategoriaService;
 import it.prova.myebay.service.UtenteService;
 import it.prova.myebay.validation.ValidationNoPassword;
 import it.prova.myebay.validation.ValidationWithPassword;
+import it.prova.myebay.service.AcquistoService;
 import it.prova.myebay.service.AnnuncioService;
 
 @Controller
@@ -39,6 +43,9 @@ public class AnnuncioController {
 	
 	@Autowired
 	private UtenteService utenteService;
+	
+	@Autowired
+	private AcquistoService acquistoService;
 	
 	@GetMapping
 	public ModelAndView listAllAnnunci() {
@@ -133,19 +140,32 @@ public class AnnuncioController {
 		return "redirect:/annuncio/list/" + idUtente;
 	}
 	
-	@PostMapping("/annuncio/compra")
-	public String compra(Annuncio annuncio, ModelMap model) {
+	@PostMapping("/annuncio/compra/{idUtente}")
+	public String compra(Annuncio annuncio, @PathVariable(required = true) Long idUtente, ModelMap model, RedirectAttributes redirectAttrs) {
 		AnnuncioDTO annuncioTemp = AnnuncioDTO.buildAnnuncioDTOFromModel(annuncioService.caricaSingoloAnnuncio(annuncio.getId()), true, true);
 		
 		model.addAttribute("compra_annuncio_attr", annuncioTemp);
+		int prezzoAnnuncio = annuncioTemp.getPrezzo();
+		Utente utente = utenteService.caricaSingoloUtente(idUtente);
 		
-		//TODO controllare che sia lo stesso utente
-/*	
-		if(annuncioTemp.getPrezzo() > annuncioTemp.getUtenteInserimento().getCreditoResiduo()) {
+		//controllo che se non ha abbastanza credito torna alla home con un messaggio di erroere
+		if(prezzoAnnuncio > utente.getCreditoResiduo()) {
 			model.addAttribute("errorMessage", "Credito residuo insufficiente");
 			return "index";
 		}
-*/	
-		return "/annuncio/compra";
+		
+		//scalo i soldi
+		utente.setCreditoResiduo(utente.getCreditoResiduo()-prezzoAnnuncio);
+		
+		//setto l'annuncio a chiuso
+		annuncio.setAperto(false);
+		annuncioService.aggiorna(annuncio);
+		
+		//creo la voce di acquisto
+		Acquisto acquisto = new Acquisto(annuncioTemp.getTestoAnnuncio(), new Date(), annuncioTemp.getPrezzo());
+		acquisto.setUtenteAcquirente(utenteService.caricaSingoloUtente(idUtente));
+		acquistoService.inserisciNuovo(acquisto);
+		
+		return "redirect:/acquisto/list/" + idUtente;
 	}
 }

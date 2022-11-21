@@ -54,7 +54,7 @@
 					            <i class='fa fa-chevron-left'></i> Back
 					        </a>
 					        
-					        <form method="post" action="${pageContext.request.contextPath}/annuncio/compra" class="row g-3">
+					        <form method="post" action="${pageContext.request.contextPath}/annuncio/compra/${userInfo.id}" class="row g-3">
 					        	<input type="hidden" name="id" value="${show_annuncio_attr.id}">
 					        	<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Compra</button>
 					        </form>
