@@ -70,7 +70,7 @@ public class AnnuncioController {
 		annuncioService.inserisciNuovo(annuncio);
 
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
-		return "redirect:/index";
+		return "redirect:/annuncio/list/" + idUtente;
 	}
 	
 	@PostMapping("/risultati")
