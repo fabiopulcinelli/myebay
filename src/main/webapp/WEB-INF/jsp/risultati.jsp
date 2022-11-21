@@ -39,7 +39,6 @@
 			                        <th>Testo annuncio</th>
 			                        <th>Prezzo</th>
 			                        <th>Data</th>
-			                        <th>Categorie</th>
 			                        <th>Azioni</th>
 			                    </tr>
 			                </thead>
@@ -49,7 +48,6 @@
 										<td>${annuncioItem.testoAnnuncio }</td>
 										<td>${annuncioItem.prezzo }</td>
 										<td>${annuncioItem.data }</td>
-										<td></td>
 										<td>
 											<a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/show/${annuncioItem.id }">Dettaglio</a>
 											

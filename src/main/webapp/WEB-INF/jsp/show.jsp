@@ -46,11 +46,6 @@
 							  <dd class="col-sm-9">${show_annuncio_attr.data}</dd>
 					    	</dl>
 					    	
-					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Categorie:</dt>
-							  
-					    	</dl>
-					    	
 					    </div>
 					    <!-- end card body -->
 					    

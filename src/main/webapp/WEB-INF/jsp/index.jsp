@@ -1,5 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -79,15 +80,17 @@
 								<input type="number" min="0" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo">
 							</div>
 							
-							<%--  checkbox Categorie 	--%>
+							<%--  checkbox categorie 	--%>
+								<%-- facendolo con i tag di spring purtroppo viene un po' spaginato quindi aggiungo class 'a mano'	--%>
 								<div class="col-md-6 form-check" id="categorieDivId">
 									<p>Categorie:</p>
 									
-									<%--  TODO 	--%>
-									<%--
-									<form:checkboxes itemValue="id" itemLabel="codice"  element="div class='form-check'" items="${categorie_totali_attr}" path="categorie" />
-									--%>
-									
+									<c:forEach items="${categorie_totali_attr}" var="item">
+							         	 <div>
+									      <input type="checkbox" id="${item.codice}" name="categorieIds" value="${item.codice}" />
+									      <label for="${item.codice}">${item.descrizione}</label>
+									    </div>
+							        </c:forEach>
 								</div>
 								<script>
 									$(document).ready(function(){
@@ -101,7 +104,7 @@
 										
 									});
 								</script>
-								<%-- fine checkbox ruoli 	--%>
+								<%-- fine checkbox categorie 	--%>
 							
 							<div class="col-12">	
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
