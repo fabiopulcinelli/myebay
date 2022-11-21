@@ -24,7 +24,7 @@
             <ul class="dropdown-menu" aria-labelledby="dropdown07">
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/home">Home</a></li>
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/acquisto/list/${userInfo.id}">Visualizza acquisti effettuati</a></li>
-              <li><a class="dropdown-item" href="DAMETTEREEEE!!!!">Gestione annunci</a></li>
+              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/annuncio/list/${userInfo.id}">Gestione annunci</a></li>
             </ul> 
           </li>
           </sec:authorize>
