@@ -51,7 +51,7 @@ public class AcquistoServiceImpl implements AcquistoService {
 	public List<Acquisto> findByExample(Acquisto example) {
 		return repository.findByExample(example);
 	}
-
+	
 	@Override
 	public List<Acquisto> findByIdUtente(Long idUtente) {
 		return repository.findByIdUtente(idUtente);

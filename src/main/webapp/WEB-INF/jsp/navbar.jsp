@@ -10,7 +10,7 @@
       <div class="collapse navbar-collapse" id="navbarsExample07">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/home">Home</a>
+            <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/home">Home </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -41,6 +41,7 @@
       </div>
       <sec:authorize access="isAuthenticated()">
 	      <div class="col-md-3 text-end">
+	      
 	        <p class="navbar-text">Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome })
 	    	 <a href="${pageContext.request.contextPath}/logout">Logout</a></p>
 	      </div>

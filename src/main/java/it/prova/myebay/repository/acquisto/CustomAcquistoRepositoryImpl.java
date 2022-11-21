@@ -48,27 +48,4 @@ public class CustomAcquistoRepositoryImpl implements CustomAcquistoRepository{
 		return typedQuery.getResultList();
 	}
 
-	@Override
-	public List<Acquisto> findByIdUtente(Long idUtente) {
-		Map<String, Object> paramaterMap = new HashMap<String, Object>();
-		List<String> whereClauses = new ArrayList<String>();
-
-		StringBuilder queryBuilder = new StringBuilder("select a from Acquisto a where a.id=a.id ");
-		
-		if (idUtente != null) {
-			whereClauses.add("a.utente_id >= :utente_id ");
-			paramaterMap.put("utente_id", idUtente);
-		}
-		
-		queryBuilder.append(!whereClauses.isEmpty()?" and ":"");
-		queryBuilder.append(StringUtils.join(whereClauses, " and "));
-		TypedQuery<Acquisto> typedQuery = entityManager.createQuery(queryBuilder.toString(), Acquisto.class);
-
-		for (String key : paramaterMap.keySet()) {
-			typedQuery.setParameter(key, paramaterMap.get(key));
-		}
-
-		return typedQuery.getResultList();
-	}
-
 }

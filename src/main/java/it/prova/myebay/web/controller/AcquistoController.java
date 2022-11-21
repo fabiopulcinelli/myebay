@@ -32,4 +32,10 @@ public class AcquistoController {
 				AcquistoDTO.createAcquistoDTOListFromModelList(acquistoService.findByIdUtente(idUtente), true));
 		return "acquisto/list";
 	}
+	
+	@GetMapping("/show/{idAcquisto}")
+	public String show(@PathVariable(required = true) Long idAcquisto, Model model) {
+		model.addAttribute("show_acquisto_attr", acquistoService.caricaSingoloAcquisto(idAcquisto));
+		return "acquisto/show";
+	}
 }

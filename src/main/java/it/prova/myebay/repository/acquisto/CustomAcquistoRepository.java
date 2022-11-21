@@ -7,6 +7,4 @@ import it.prova.myebay.model.Utente;
 
 public interface CustomAcquistoRepository {
 	List<Acquisto> findByExample(Acquisto example);
-	
-	List<Acquisto> findByIdUtente(Long idUtente);
 }
