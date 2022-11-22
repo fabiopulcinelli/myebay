@@ -45,7 +45,7 @@
 	        <p class="navbar-text">Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome })
 	    	 <a href="${pageContext.request.contextPath}/logout">Logout</a></p>
 	    	 
-	    	 <a class="text-warning" href="${pageContext.request.contextPath}/utente/resetPassword/${userInfo.username}">Reset Password</a>
+	    	 <a class="text-warning" href="${pageContext.request.contextPath}/utente/resetPassword">Reset Password</a>
 	      </div>
       </sec:authorize>
       <sec:authorize access="!isAuthenticated()">

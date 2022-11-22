@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.prova.myebay.dto.RuoloDTO;
 import it.prova.myebay.dto.UtenteDTO;
+import it.prova.myebay.dto.UtenteDTOReset;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.RuoloService;
 import it.prova.myebay.service.UtenteService;
@@ -39,6 +42,9 @@ public class UtenteController {
 
 	@Autowired
 	private RuoloService ruoloService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@GetMapping
 	public ModelAndView listAllUtenti() {
@@ -132,23 +138,43 @@ public class UtenteController {
 	}
 
 	
-	@GetMapping("/resetPassword/{username}")
-	public String resetPassword(@PathVariable(required = true) String username, Model model) {
+	@GetMapping("/resetPassword")
+	public String resetPassword(Model model) {
+		model.addAttribute("utente_reset_psw", new UtenteDTOReset());
 		return "utente/reset";
 	}
 	
 	@PostMapping("/resetta")
-	public String resetta(
-			@Validated(ValidationNoPassword.class) @ModelAttribute("reset_utente_attr") UtenteDTO utenteDTO,
-			BindingResult result, Model model, RedirectAttributes redirectAttrs) {
+	public String resetta(@ModelAttribute("utente_reset_psw") UtenteDTOReset utente, Model model) {
 		
-		if (!utenteDTO.getPasswordNuova().equals(utenteDTO.getConfermaPassword()))
-			result.rejectValue("confermaPassword", "password.diverse");
+		UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Utente utenteInSessione = utenteService.findByUsername(principal.getUsername());
 
-		if (result.hasErrors()) {
-			return "utente/reset/" + utenteDTO.getUsername();
+		if (utente.getPasswordNuova().isBlank() || utente.getConfermaPassword().isBlank()
+				|| utente.getPasswordNuova().isBlank()) {
+			model.addAttribute("errorMessage", "Sono presenti errori di validazione!");
+			return "utente/reset";
 		}
 		
+		if (passwordEncoder.matches(utente.getPasswordNuova(), utenteInSessione.getPassword())) {
+			model.addAttribute("errorMessage", "La nuova password e' uguale alla vecchia!");
+			return "utente/reset";
+		}
+		
+		if (!passwordEncoder.matches(utente.getPasswordVecchia(), utenteInSessione.getPassword())) {
+			model.addAttribute("errorMessage", "La vecchia password e' sbagliata!");
+			return "utente/reset";
+		}
+		
+		if (!utente.getPasswordNuova().equals(utente.getConfermaPassword())) {
+			model.addAttribute("errorMessage", "La password di conferma non coincide con quella appena inserita!");
+			return "utente/reset";
+		}
+		
+		
+		//RIPARTIRE DA QUI
+		utenteService.cambiaPassword(utente, utenteInSessione);
+
 		return "redirect:/logout";
 	}
 }

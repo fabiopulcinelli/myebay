@@ -46,30 +46,30 @@
 							<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
 		
 		
-							<form:form modelAttribute="reset_utente_attr" method="post" action="resetta" novalidate="novalidate" class="row g-3">
+							<form:form modelAttribute="utente_reset_psw" method="post" action="resetta" novalidate="novalidate" class="row g-3">
 								
-								 <div class="col-md-3">
+								<div class="col-md-3">
 									<label for="passwordVecchia" class="form-label">Password Vecchia<span class="text-danger">*</span></label>
-
+									<spring:bind path="passwordVecchia">
 										<input type="password" class="form-control ${status.error ? 'is-invalid' : ''}" name="passwordVecchia" id="passwordVecchia" 
 										placeholder="Inserire Password" required>
-
+									</spring:bind>
 									<form:errors  path="passwordVecchia" cssClass="error_field" />
 								</div>
 								
 								<div class="col-md-3">
 									<label for="passwordNuova" class="form-label">Password Nuova<span class="text-danger">*</span></label>
-
+									<spring:bind path="passwordNuova">
 										<input type="password" class="form-control ${status.error ? 'is-invalid' : ''}" name="passwordNuova" id="passwordNuova" placeholder="Inserire Password"  required>
-
+									</spring:bind>
 									<form:errors  path="passwordNuova" cssClass="error_field" />
 								</div>
-								
+
 								<div class="col-md-3">
 									<label for="confermaPassword" class="form-label">Conferma Password Nuova<span class="text-danger">*</span></label>
-
+									<spring:bind path="confermaPassword">
 										<input type="password" class="form-control ${status.error ? 'is-invalid' : ''}" name="confermaPassword" id="confermaPassword" placeholder="Confermare Password"  required>
-
+									</spring:bind>
 									<form:errors  path="confermaPassword" cssClass="error_field" />
 								</div>
 								
