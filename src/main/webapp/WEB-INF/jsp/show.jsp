@@ -1,4 +1,5 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -54,11 +55,19 @@
 					            <i class='fa fa-chevron-left'></i> Back
 					        </a>
 					        
-					        <form method="post" action="${pageContext.request.contextPath}/annuncio/compra/${userInfo.id}" class="row g-3">
-					        	<input type="hidden" name="id" value="${show_annuncio_attr.id}">
-					        	<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Compra</button>
-					        </form>
+					        <sec:authorize access="isAuthenticated()">
+						        <form method="post" action="${pageContext.request.contextPath}/annuncio/compra/${userInfo.id}" class="row g-3">
+						        	<input type="hidden" name="id" value="${show_annuncio_attr.id}">
+						        	<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Compra</button>
+						        </form>
+					        </sec:authorize>
 					        
+					        <sec:authorize access="!isAuthenticated()">
+						        <form method="post" action="${pageContext.request.contextPath}/annuncio/compra/${userInfo.id}" class="row g-3">
+						        	<input type="hidden" name="id" value="${show_annuncio_attr.id}">
+						        	<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Loggati e Compra</button>
+						        </form>
+					        </sec:authorize>
 					     </div>
 					<!-- end card -->
 					</div>	

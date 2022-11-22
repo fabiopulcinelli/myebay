@@ -25,6 +25,7 @@ public class LoginController {
 			model.addAttribute("errorMessage", 
                      getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
 		}
+		
 		return "login";
 	}
 	
