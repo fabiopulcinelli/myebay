@@ -24,7 +24,7 @@
             <ul class="dropdown-menu" aria-labelledby="dropdown07">
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/home">Home</a></li>
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/acquisto/list/${userInfo.id}">Visualizza acquisti effettuati</a></li>
-              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/annuncio/list/${userInfo.id}">Gestione annunci</a></li>
+              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/annuncio/list/${userInfo.username}">Gestione annunci</a></li>
             </ul> 
           </li>
           </sec:authorize>
@@ -44,6 +44,8 @@
 	      
 	        <p class="navbar-text">Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome })
 	    	 <a href="${pageContext.request.contextPath}/logout">Logout</a></p>
+	    	 
+	    	 <a class="text-warning" href="${pageContext.request.contextPath}/utente/resetPassword/${userInfo.username}">Reset Password</a>
 	      </div>
       </sec:authorize>
       <sec:authorize access="!isAuthenticated()">

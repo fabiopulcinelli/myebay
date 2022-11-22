@@ -30,6 +30,10 @@ public class UtenteDTO {
 	@Size(min = 8, max = 15, message = "Il valore inserito deve essere lungo tra {min} e {max} caratteri")
 	private String password;
 
+	private String passwordNuova;
+	
+	private String passwordVecchia;
+	
 	private String confermaPassword;
 
 	@NotBlank(message = "{utente.nome.notblank}", groups = { ValidationWithPassword.class, ValidationNoPassword.class })
@@ -134,6 +138,22 @@ public class UtenteDTO {
 
 	public void setConfermaPassword(String confermaPassword) {
 		this.confermaPassword = confermaPassword;
+	}
+
+	public String getPasswordNuova() {
+		return passwordNuova;
+	}
+
+	public void setPasswordNuova(String passwordNuova) {
+		this.passwordNuova = passwordNuova;
+	}
+
+	public String getPasswordVecchia() {
+		return passwordVecchia;
+	}
+
+	public void setPasswordVecchia(String passwordVecchia) {
+		this.passwordVecchia = passwordVecchia;
 	}
 
 	public Long[] getRuoliIds() {

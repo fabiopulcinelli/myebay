@@ -26,6 +26,10 @@ public class LoginController {
                      getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
 		}
 		
+		model.addAttribute("path", request.getRequestURL());
+		
+		System.out.println(request.getRequestURL());
+		
 		return "login";
 	}
 	

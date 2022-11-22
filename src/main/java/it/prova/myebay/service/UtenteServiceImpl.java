@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -89,6 +90,16 @@ public class UtenteServiceImpl implements UtenteService {
 			utenteInstance.setStato(StatoUtente.DISABILITATO);
 		else if(utenteInstance.getStato().equals(StatoUtente.DISABILITATO))
 			utenteInstance.setStato(StatoUtente.ATTIVO);
+	}
+	
+	@Transactional
+	public void setDefaultPassword(Long utenteInstanceId) {
+		
+		Utente utenteInstance = caricaSingoloUtente(utenteInstanceId);
+		if(utenteInstance == null)
+			throw new RuntimeException("Elemento non trovato.");
+		
+		utenteInstance.setPassword(passwordEncoder.encode("Password@1"));
 	}
 
 	@Transactional

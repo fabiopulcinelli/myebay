@@ -93,8 +93,10 @@ public class AnnuncioController {
 		return "show";
 	}
 	
-	@GetMapping("/annuncio/list/{idUtente}")
-	public String listAnnunci(@PathVariable(required = true) Long idUtente, Model model) {
+	@GetMapping("/annuncio/list/{username}")
+	public String listAnnunci(@PathVariable(required = true) String username, Model model) {
+		Long idUtente = utenteService.findByUsername(username).getId();
+		
 		model.addAttribute("annuncio_list_attribute",
 				AnnuncioDTO.createAnnuncioDTOListFromModelList(annuncioService.findByIdUtente(idUtente), true, true));
 		return "annuncio/list";

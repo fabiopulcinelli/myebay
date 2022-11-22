@@ -34,19 +34,8 @@ public class CustomAuthenticationSuccessHandlerImpl implements AuthenticationSuc
 		utenteParziale.setUsername(utenteFromDb.getUsername());
 		utenteParziale.setId(utenteFromDb.getId());
 		request.getSession().setAttribute("userInfo", utenteParziale);
-
-
-		 StringBuilder requestURL = new StringBuilder(request.getRequestURL().toString());
-		 String queryString = request.getQueryString();
-		 String doveViene ="";
-
-		 if (queryString == null) {
-			 doveViene = requestURL.toString();
-		 } else {
-			 doveViene = requestURL.append('?').append(queryString).toString();
-		 }
-		 
-		 if(doveViene.equals("http://localhost:8080/login/compra")) {
+		
+		 if(!utenteParziale.getNome().isBlank()) {
 			 response.sendRedirect("show/" + utenteParziale.getId());
 		 }
 		 else {

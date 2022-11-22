@@ -57,6 +57,10 @@
 											<a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/utente/show/${utenteItem.id }">Visualizza</a>
 											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/utente/edit/${utenteItem.id }">Edit</a>
 											<a id="changeStatoLink_#_${utenteItem.id }" class="btn btn-outline-${utenteItem.isAttivo()?'danger':'success'} btn-sm link-for-modal" data-bs-toggle="modal" data-bs-target="#confirmOperationModal"  >${utenteItem.isAttivo()?'Disabilita':'Abilita'}</a>
+											<form method="post" action="${pageContext.request.contextPath}/utente/defaultPassword" >
+									            	<input type="hidden" name="idUtente" id="idUtente" value="${utenteItem.id }">
+									                <input type="submit" value="Resetta Password" class="btn btn-warning">
+								            </form>
 										</td>
 									</tr>
 								</c:forEach>
@@ -72,8 +76,6 @@
 	<!-- end container -->	
 	</main>
 	<jsp:include page="../footer.jsp" />
-	
-	
 	
 	<!-- Modal -->
 	<div class="modal fade" id="confirmOperationModal" tabindex="-1"  aria-labelledby="confirmOperationModalLabel"

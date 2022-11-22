@@ -28,4 +28,5 @@ public interface UtenteService {
 	
 	public Utente findByUsername(String username);
 
+	public void setDefaultPassword(Long utenteInstanceId);
 }
